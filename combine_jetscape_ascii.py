@@ -45,7 +45,7 @@ def Combine(args):
 
             if not os.path.isfile(file_list):
                 break
-            print(file_list)
+            #print(file_list)
             f = open(file_list)
             lines = f.readlines()
             f.close()
@@ -61,7 +61,7 @@ def Combine(args):
             file_sigma = this_seq_sigma_filename.format(i)
             if not os.path.isfile(file_sigma):
                 break
-            print(file_sigma)
+            #print(file_sigma)
             sigma = np.loadtxt(file_sigma)
             n_run = n_run + 1
             sum = sum + sigma[0]
