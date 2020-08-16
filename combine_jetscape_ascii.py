@@ -14,9 +14,16 @@ def Combine(args):
 
     import glob
     list = glob.glob(filename.format(0))
+
+    n_list = len(list)
+    i_list = 0
     
     for seq in list:
         
+        i_list = i_list +1
+
+        print(i_list,'/',n_list)
+
         this_seq_filename = seq.replace(args.suffix+'0.',args.suffix+'{}.')
         combined_filename = seq.replace(args.suffix+'0.','.')
 
