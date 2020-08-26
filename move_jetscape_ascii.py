@@ -18,10 +18,13 @@ def Move(args):
     
     list = set(glob.glob(filename)) - set(glob.glob(excl_filename))
     print(list)
-
+    i_file=0
+    n_file=len(list)
     for file in list:
+        i_file = i_file + 1
+        print(i_file,'/',N_file)
         shutil.copyfile(file,os.path.join(args.destination,file))
-        
+
 
     filename = args.head_sigma+'*.*'
     excl_filename = args.head_sigma+'*'+args.suffix+'*.*'
