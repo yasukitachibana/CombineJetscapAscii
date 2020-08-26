@@ -6,13 +6,13 @@ import numpy as np
 
 def Combine(args):
 
-#    h_switch = True
-#    p_switch = True
-#    s_switch = True
+    h_switch = True
+    p_switch = False
+    s_switch = True
 
-    h_switch = False
-    p_switch = True
-    s_switch = False
+#    h_switch = False
+#    p_switch = True
+#    s_switch = False
 
     
     print('\n### Filename Starting with '+args.head_hadron)
@@ -30,6 +30,9 @@ def Combine(args):
     for seq in list:
         
         i_list = i_list +1
+
+        if i_list < 53:
+            continue
 
         print(i_list,'/',n_list)
 
@@ -138,7 +141,7 @@ def main():
     args = parser.parse_args()
     
     home = os.getcwd()
-    os.chdir(args.target_directory)
+    os.chdir(args.dir)
     Combine(args)
     os.chdir(home)
 

@@ -25,7 +25,6 @@ def Move(args):
         print(i_file,'/',N_file)
 
         shutil.copyfile(file,os.path.join(args.destination,file))
-        command = 'cp '+os.path.join(cwd,file)+' '+os.path.join(args.destination,file)
 
     filename = args.head_sigma+'*.*'
     excl_filename = args.head_sigma+'*'+args.suffix+'*.*'
