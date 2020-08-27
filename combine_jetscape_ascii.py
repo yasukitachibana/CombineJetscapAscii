@@ -6,13 +6,13 @@ import numpy as np
 
 def Combine(args):
 
-    h_switch = True
-    p_switch = False
-    s_switch = True
+#    h_switch = True
+#    p_switch = False
+#    s_switch = True
 
-#    h_switch = False
-#    p_switch = True
-#    s_switch = False
+    h_switch = False
+    p_switch = True
+    s_switch = False
 
     
     print('\n### Filename Starting with '+args.head_hadron)
@@ -30,9 +30,6 @@ def Combine(args):
     for seq in list:
         
         i_list = i_list +1
-
-        if i_list < 53:
-            continue
 
         print(i_list,'/',n_list)
 
@@ -122,9 +119,10 @@ def Combine(args):
                 n_run = n_run + 1
                 sum = sum + sigma[0]
                 err2 = err2 + sigma[1]*sigma[1]
-            
-        sigma_avr = np.array([sum/n_run, np.sqrt(err2)/n_run]).T
-        np.savetxt(combined_sigma_filename, [sigma_avr])
+
+        if s_switch:            
+            sigma_avr = np.array([sum/n_run, np.sqrt(err2)/n_run]).T
+            np.savetxt(combined_sigma_filename, [sigma_avr])
         
 
 def main():

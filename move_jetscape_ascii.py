@@ -26,12 +26,12 @@ def Move(args):
     n_file=len(list)
     for file in list:
         i_file = i_file + 1
-        print(i_file,'/',N_file)
+        print(i_file,'/',n_file)
 
         #shutil.copyfile(file,os.path.join(args.destination,file))
         command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.destination,file)+'"'
         master_command = os.path.join(home,'JobMaster') + ' "" ' + command
-        qsub_command = qcom.GenerateQsubCommand(string(i_file),master_command)
+        qsub_command = qcom.GenerateQsubCommand('h'+str(i_file),master_command)
         print('Submission: ')
         print(qsub_command)
         os.system(qsub_command)
@@ -43,10 +43,10 @@ def Move(args):
     list = set(glob.glob(filename)) - set(glob.glob(excl_filename))
     print(list)
 
-    for file in list:
+    for file in list:
         command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.destination,file)+'"'
         master_command = os.path.join(home,'JobMaster') + ' "" ' + command
-        qsub_command = qcom.GenerateQsubCommand(string(i_file),master_command)
+        qsub_command = qcom.GenerateQsubCommand('s'+str(i_file),master_command)
         print('Submission: ')
         print(qsub_command)
         os.system(qsub_command)
