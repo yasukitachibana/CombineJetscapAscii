@@ -9,22 +9,22 @@ import generate_qsub_command as qcom
 
 def Move(args):
 
-    h_switch = False
+    h_switch = True
     p_switch = True
-    s_switch = False
+    s_switch = True
     
     home = os.getcwd()
-    os.chdir(args.from)
+    os.chdir(args.fdir)
     
     print('\n### Filename Starting with '+args.head_hadron+' and '+args.head_parton)
     cwd = os.getcwd()
-    print('### From Directory '+cwd+' to '+args.from+'\n')
+    print('### From Directory '+cwd+' to '+args.to+'\n')
     
 
     filename = args.head_hadron+'*.*'
     excl_filename = args.head_hadron+'*'+args.suffix+'*.*'
     
-    if h_switch = False:
+    if not h_switch:
         filename = args.head_parton+'*.*'
         excl_filename = args.head_parton+'*'+args.suffix+'*.*'
     
@@ -41,7 +41,7 @@ def Move(args):
         print(i_file,'/',n_file)
         ######################################################################################################
         #shutil.copyfile(file,os.path.join(args.destination,file))
-        command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.destination,file)+'"'
+        command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.to,file)+'"'
         master_command = os.path.join(home,'JobMaster') + ' "" ' + command
         qsub_command = qcom.GenerateQsubCommand('h'+str(i_file),master_command)
         print('Submission: ')
@@ -51,7 +51,7 @@ def Move(args):
         
         if h_switch and p_switch:
             file = file.replace(args.head_hadron,args.head_parton)
-            command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.destination,file)+'"'
+            command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.to,file)+'"'
             master_command = os.path.join(home,'JobMaster') + ' "" ' + command
             qsub_command = qcom.GenerateQsubCommand('h'+str(i_file),master_command)
             print('Submission: ')
@@ -67,7 +67,7 @@ def Move(args):
         print(list)
 
         for file in list:
-            command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.destination,file)+'"'
+            command = '"cp '+os.path.join(cwd,file)+' '+os.path.join(args.to,file)+'"'
             master_command = os.path.join(home,'JobMaster') + ' "" ' + command
             qsub_command = qcom.GenerateQsubCommand('s'+str(i_file),master_command)
             print('Submission: ')
@@ -83,7 +83,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--from", type=str, default="./")
+    parser.add_argument("--fdir", type=str, default="./")
     parser.add_argument("--to", type=str, default="./test")
     parser.add_argument("--suffix", type=str, default="_Run")
     parser.add_argument("--head_hadron", type=str, default="JetscapeHadronListBin")
@@ -91,6 +91,7 @@ def main():
     parser.add_argument("--head_sigma", type=str, default="SigmaHardBin")
     args = parser.parse_args()
 
+    os.makedirs(args.to)
     Move(args)
 
 
