@@ -10,9 +10,9 @@ def Combine(args):
 #    p_switch = False
 #    s_switch = True
 
-    h_switch = False
+    h_switch = True
     p_switch = True
-    s_switch = False
+    s_switch = True
 
     
     print('\n### Filename Starting with '+args.head_hadron)

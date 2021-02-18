@@ -5,7 +5,7 @@ def GenerateQsubCommand(job_name,job_command):
     #head = 'sbatch --time=1:00:00 -p $SPRIMARY  --mem=16G'
     #head = 'sbatch --time=72:00:00 -p $SPRIMARY --mem=64G'
     #head = 'sbatch --time=72:00:00 -p $SPRIMARY --mem=8G'
-    head = 'sbatch --time=72:00:00 -q secondary --mem=32G'
+    head = 'sbatch --time=72:00:00 -q primary --mem=32G'
     
 
     #head = 'qsub -V -q eamxq -l mem=16gb -l cpu_type=Intel  '
